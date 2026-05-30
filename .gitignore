@@ -1,0 +1,30 @@
+# Node
+node_modules/
+dist/
+package-lock.json
+
+# Foundry
+out/
+cache/
+broadcast/
+
+# Local env/state
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+*.pem
+*.key
+.boon/
+.wrangler/
+.clawpatch/
+
+# Generated skill artifacts (built from skill/boon/SKILL.md by the private
+# docs deploy origin; the mirror is not the docs deploy origin, so these
+# build outputs are not tracked here).
+docs/public/skill.md
+docs/public/.well-known/
+
+# OS/editor
+.DS_Store

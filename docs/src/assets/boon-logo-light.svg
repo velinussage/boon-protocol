@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 44" fill="none" role="img" aria-label="boon">
+  <text
+    x="0"
+    y="34"
+    font-family="Fraunces, 'Times New Roman', Georgia, ui-serif, serif"
+    font-size="40"
+    font-weight="400"
+    font-style="normal"
+    letter-spacing="-1.6"
+    fill="#1c1917"
+  >boon</text>
+  <circle cx="103" cy="10" r="4.5" fill="#6b7a45" />
+</svg>

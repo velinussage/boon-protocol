@@ -1,0 +1,43 @@
+{
+  "name": "boon-cli",
+  "version": "0.5.6",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "boon": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "test": "pnpm --filter @boon/claim-types build && pnpm --filter @boon/normalize build && pnpm build && node test/smoke.mjs && node test/claim-device.mjs && node test/ows-adapter.mjs && node test/ows-guardrails.test.mjs && node test/agent-tip.test.mjs && node test/private-tip.test.mjs",
+    "start": "pnpm run build && node dist/index.js"
+  },
+  "dependencies": {
+    "@boon/normalize": "workspace:*",
+    "commander": "^12.1.0",
+    "viem": "^2.21.0",
+    "@boon/claim-types": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "description": "Boon operator CLI for funded OWS agent-wallet USDC gratitude tips.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velinussage/boon-protocol.git"
+  },
+  "bugs": {
+    "url": "https://github.com/velinussage/boon-protocol/issues"
+  },
+  "homepage": "https://github.com/velinussage/boon-protocol#readme",
+  "license": "MIT",
+  "keywords": [
+    "boon",
+    "cli",
+    "usdc",
+    "base",
+    "agents"
+  ]
+}

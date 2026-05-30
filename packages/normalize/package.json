@@ -1,0 +1,41 @@
+{
+  "name": "@boon/normalize",
+  "version": "0.5.6",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "description": "Canonical Boon handle normalization shared by Boon clients and hosted services.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/velinussage/boon-protocol.git"
+  },
+  "bugs": {
+    "url": "https://github.com/velinussage/boon-protocol/issues"
+  },
+  "homepage": "https://github.com/velinussage/boon-protocol#readme",
+  "license": "MIT",
+  "keywords": [
+    "boon",
+    "handles",
+    "normalization"
+  ]
+}

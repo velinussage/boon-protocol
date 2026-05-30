@@ -1,0 +1,449 @@
+@import "tailwindcss";
+
+/*
+ * boon design tokens
+ * Aesthetic: sober technical correspondence. Warm off-white, warm ink,
+ * single olive accent. Fraunces variable serif + Geist Mono for numbers.
+ */
+
+@theme {
+  /* Surface */
+  --color-paper: #faf9f5;
+  --color-paper-deep: #f3f1ea;
+  --color-ink: #1c1917;
+  --color-ink-soft: #44403c;
+  --color-muted: #78716c;
+  --color-faint: #d6d3d1;
+
+  /* Warm earth accents — olive is primary; clay + amber are landing-only
+     editorial accents that pair with olive in a Renaissance-manuscript register. */
+  --color-olive: #6b7a45;
+  --color-olive-deep: #4f5b30;
+  --color-olive-soft: #e8e9d6;
+
+  --color-clay: #b06a4a;
+  --color-clay-deep: #7e4a32;
+  --color-clay-soft: #f4e3d4;
+
+  --color-amber: #a3782f;
+  --color-amber-deep: #6f5119;
+  --color-amber-soft: #f3e9cd;
+
+  /* Functional */
+  --color-success: #5a7a3e;
+  --color-warning: #b45309;
+  --color-danger: #9f1d1d;
+
+  /* Typography */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Fraunces", ui-serif, Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Radii — deliberate, not 8px-everywhere */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  /* Shadow — Emil's 1+2 pattern (tight crisp + soft halo) */
+  --shadow-card:
+    0 1px 0 rgba(28, 25, 23, 0.04),
+    0 8px 24px -8px rgba(28, 25, 23, 0.08);
+  --shadow-card-hover:
+    0 1px 0 rgba(28, 25, 23, 0.06),
+    0 12px 32px -8px rgba(28, 25, 23, 0.12);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    overflow-x: clip;
+  }
+
+  body {
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  /* Sticky footer: any <main> inside the page grows to fill remaining
+     viewport height so the <footer> rests at the bottom on short pages. */
+  #root > main {
+    flex: 1 0 auto;
+  }
+
+  /* Tabular numbers everywhere — important for currency amounts */
+  .num,
+  code,
+  pre,
+  kbd {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum", "zero";
+  }
+
+  /* Selection in the accent — quiet personality */
+  ::selection {
+    background: var(--color-olive-soft);
+    color: var(--color-olive-deep);
+  }
+
+  /* Focus — always visible, never default outline */
+  *:focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+@layer components {
+  /* The boon wordmark — single source of truth for the lowercase mark */
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--color-ink);
+    /* Subtle warmth shift on the dot of the 'o' loops — handled via &::before
+       in pages that want the seal mark, otherwise plain text. */
+  }
+
+  .wordmark-mark {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 0.3rem;
+    vertical-align: 0.55em;
+    border-radius: 999px;
+    background: var(--color-olive);
+  }
+
+  /* Hero-sized seal — slow lub-dub with a long diastole rest. Scoped to the
+     landing hero only (Wordmark size="hero"); Nav + footer marks stay quiet.
+     Cycle: 3.2s. Each beat phase takes meaningful time (no snap-in/snap-out)
+     and the wave grows linearly so the ring travels at a steady, unhurried
+     rate through both beats before fading. */
+  .wordmark-mark-hero {
+    position: relative;
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-left: 0.5rem;
+    vertical-align: 0.58em;
+    animation: wordmark-heartbeat 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    will-change: transform;
+  }
+
+  /* Shockwave — linear scale + soft opacity fade. Linear keeps the ring's
+     visual speed perceivable (no fast start, no fast finish); soft ease on
+     opacity lets it linger as it dissipates. */
+  .wordmark-mark-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 2px solid var(--color-olive);
+    animation: wordmark-shockwave 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  /* A button-as-link primitive — used across CTAs */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.125rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: -0.005em;
+    transition:
+      transform 120ms ease-out,
+      background 120ms ease-out,
+      box-shadow 120ms ease-out;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover {
+    background: var(--color-olive-deep);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-faint);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-ink-soft);
+    transform: translateY(-1px);
+  }
+
+  .btn-mono {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0;
+  }
+
+  /* OAuth sign-in buttons — provider-branded for legibility.
+     GitHub: #1f2328 is GitHub's current dark surface token (Primer dark).
+     X: pure #000 per X brand guidelines (replaced the bird in 2023).
+     Both render the brand mark + label on a single line; stack vertically
+     on narrow viewports via the consumer's flex/grid wrapper. */
+  .btn-oauth {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: -0.005em;
+    color: #ffffff;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      transform 120ms ease-out,
+      background 120ms ease-out,
+      box-shadow 120ms ease-out;
+  }
+  .btn-oauth:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
+  }
+  .btn-oauth:active {
+    transform: translateY(0);
+  }
+
+  .btn-github {
+    background: #1f2328;
+    border-color: #1f2328;
+  }
+  .btn-github:hover {
+    background: #2c3138;
+  }
+
+  .btn-x {
+    background: #000000;
+    border-color: #000000;
+  }
+  .btn-x:hover {
+    background: #18181b;
+  }
+
+  /* Card primitive — used sparingly, only where it earns its weight */
+  .card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-faint);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 200ms ease-out;
+  }
+
+  .card-selectable {
+    cursor: pointer;
+    transition:
+      transform 120ms ease-out,
+      box-shadow 200ms ease-out,
+      border-color 120ms ease-out;
+  }
+  .card-selectable:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+  .card-selected {
+    border-color: var(--color-olive);
+    box-shadow:
+      0 0 0 1px var(--color-olive),
+      var(--shadow-card-hover);
+  }
+
+  /* Quiet pill — used for status badges and labels */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .pill-olive {
+    background: var(--color-olive-soft);
+    color: var(--color-olive-deep);
+  }
+  .pill-faint {
+    background: var(--color-paper-deep);
+    color: var(--color-muted);
+  }
+  .pill-warning {
+    background: #fef3c7;
+    color: var(--color-warning);
+  }
+
+  /* Hairline rule — used for sectional separation without heavy borders */
+  .hr {
+    border: 0;
+    border-top: 1px solid var(--color-faint);
+  }
+
+  /* Mono code chip — for addresses, hashes */
+  .chip {
+    display: inline-block;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-paper-deep);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--color-ink-soft);
+  }
+}
+
+/* Subtle entrance animations — opt-in via class */
+@keyframes wordmark-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heartbeat — softer S1/S2 with longer build & decay on each beat. 3.2s cycle.
+   Smaller peaks + more cycle-time on each phase = no snap, no flick.
+   · S1 "lub" peaks at 8% (~256ms rise), back to neutral at 14%
+   · S2 "dub" peaks at 20% (smaller echo), settled by 26%
+   · 26%–100% diastole rest (~2.4s of stillness) */
+@keyframes wordmark-heartbeat {
+  0%,
+  14%,
+  26%,
+  100% {
+    transform: scale(1);
+  }
+  8% {
+    transform: scale(1.18);
+  }
+  20% {
+    transform: scale(1.10);
+  }
+}
+
+/* Shockwave — single ripple that starts with S1 and travels until S2 settles.
+   Wider window (8%→26% of the cycle = ~576ms of visible expansion) and a
+   linear-ish scale curve so the ring moves at a perceivable steady rate
+   rather than snapping out and decaying. Opacity fades softly over the
+   whole window. */
+@keyframes wordmark-shockwave {
+  0%,
+  6% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  8% {
+    transform: scale(1.18);
+    opacity: 0.5;
+  }
+  26% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Success checkmark — overshoot pop. Used on /claim when the relayer
+   confirms. Honors prefers-reduced-motion via the broader override. */
+@keyframes claim-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-claim-pop {
+  animation: claim-pop 360ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-wordmark-in {
+  animation: wordmark-in 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-fade-up {
+  animation: fade-up 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Staggered children — set --delay on the parent */
+.stagger > * {
+  animation-delay: calc(var(--delay, 60ms) * var(--i, 0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-wordmark-in,
+  .animate-fade-up,
+  .animate-claim-pop,
+  .stagger > *,
+  .wordmark-mark-hero,
+  .wordmark-mark-hero::before {
+    animation: none !important;
+  }
+  .wordmark-mark-hero::before {
+    opacity: 0;
+  }
+}

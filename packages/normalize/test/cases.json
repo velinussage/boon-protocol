@@ -1,0 +1,60 @@
+{
+  "_comment": "Cross-language ground truth for canonicalizeHandle. The TS implementation, Solidity hash-equality check, and hosted indexers MUST all produce the same canonical handle (and therefore the same handleHash) for every 'ok' case below, and reject every 'bad' case.",
+  "ok": [
+    { "input": "github:alice", "canonical": "github:alice" },
+    { "input": "github:Alice", "canonical": "github:alice" },
+    { "input": "Github:alice", "canonical": "github:alice" },
+    { "input": "GITHUB:ALICE", "canonical": "github:alice" },
+    { "input": "  github:alice  ", "canonical": "github:alice" },
+    { "input": "github: alice ", "canonical": "github:alice" },
+    { "input": "github:user-name", "canonical": "github:user-name" },
+    { "input": "github:User-Name-123", "canonical": "github:user-name-123" },
+    { "input": "github:a", "canonical": "github:a" },
+    { "input": "x:bob", "canonical": "x:bob" },
+    { "input": "x:@bob", "canonical": "x:bob" },
+    { "input": "x:@Bob", "canonical": "x:bob" },
+    { "input": "X:bob", "canonical": "x:bob" },
+    { "input": "x:user_name", "canonical": "x:user_name" },
+    { "input": "x:User_123", "canonical": "x:user_123" },
+    { "input": "agent:1", "canonical": "agent:1" },
+    { "input": "agent:42", "canonical": "agent:42" },
+    { "input": "agent:99999", "canonical": "agent:99999" },
+    {
+      "input": "agent:115792089237316195423570985008687907853269984665640564039457584007913129639935",
+      "canonical": "agent:115792089237316195423570985008687907853269984665640564039457584007913129639935"
+    }
+  ],
+  "bad": [
+    { "input": "", "reason": "empty" },
+    { "input": "   ", "reason": "empty after trim" },
+    { "input": "alice", "reason": "missing scheme" },
+    { "input": "github", "reason": "missing colon" },
+    { "input": "github:", "reason": "empty username" },
+    { "input": "github: ", "reason": "empty after trim" },
+    { "input": "twitter:bob", "reason": "unsupported scheme" },
+    { "input": "fc:zero", "reason": "scheme not yet supported in v1" },
+    { "input": "github:-alice", "reason": "leading hyphen" },
+    { "input": "github:alice-", "reason": "trailing hyphen" },
+    { "input": "github:alice--bob", "reason": "consecutive hyphens" },
+    { "input": "github:alice.bob", "reason": "invalid character" },
+    { "input": "github:thisusernameiswaytoolongforgithubsthirtyninechar", "reason": "too long for github" },
+    { "input": "x:thisistoolongforxhandles", "reason": "too long for x (>15)" },
+    { "input": "x:bad-name", "reason": "hyphen not allowed in x" },
+    { "input": "x:bad.name", "reason": "dot not allowed in x" },
+    { "input": "x:", "reason": "empty x username" },
+    { "input": "x:@", "reason": "@ then empty" },
+    { "input": "agent:0", "reason": "agent zero is invalid" },
+    { "input": "agent:01", "reason": "agent leading zero" },
+    { "input": "agent:0x42", "reason": "agent hex not allowed" },
+    { "input": "agent:", "reason": "empty agent id" },
+    { "input": "agent: 1", "reason": "agent whitespace" },
+    { "input": " agent:1 ", "reason": "agent surrounding whitespace" },
+    { "input": "agent:\t1", "reason": "agent tab" },
+    { "input": "agent:1\n", "reason": "agent trailing newline" },
+    { "input": "agent:\u0001", "reason": "agent control char" },
+    {
+      "input": "agent:115792089237316195423570985008687907853269984665640564039457584007913129639936",
+      "reason": "uint256 overflow"
+    }
+  ]
+}
