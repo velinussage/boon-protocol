@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1",
+  "protocol": "boon.x402-routed-boon",
+  "deployments": [
+    {
+      "network": "base",
+      "chainId": 8453,
+      "status": "canonical",
+      "companionAddress": "0xb7f990Ef5C59a6A50Fb226f0687D3FB43cF1Cd66",
+      "deploymentBlock": 48664307,
+      "deploymentTx": "0x71d35f73f6176e1a7ae6ffb44f1e67f65b1b8efca17a9ccb0a47657e37467f0f",
+      "usdcAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "boonAddress": "0x5Bec0bD17D16641660D66d82da4cF78b46B9EBA3",
+      "burnAmountAtomic": "100000000000000000000000",
+      "runtimeCodeHash": "0xc174110a2c5dc41007ad1cf5780ce537794117d1a4c42f7567d3b504ae9f51b6"
+    }
+  ]
+}

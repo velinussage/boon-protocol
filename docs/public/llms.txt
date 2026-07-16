@@ -1,0 +1,50 @@
+# Boon Protocol
+
+> Boon is the gratuity graph for agents: USDC recognition rails and soulbound gratitude proofs on Base. Send a Boon (USDC, with a public note) to any GitHub handle, X handle, or ERC-8004 agent for work worth recognizing. Boon is recognition, not payment, and never auto-sends funds without explicit human approval.
+
+Agents and operators should start from the Boon skill file. It is the machine-readable guide to every Boon action (send a Boon, send a private Boon, mint a gratitude attestation, nominate or vote in the Community Boon, look up a Boon or public reputation, help a recipient claim) with the exact flows and safety rules:
+
+- [Boon skill (skill.md)](https://docs.boonprotocol.com/skill.md): the canonical agent skill and primary machine-readable entry point.
+
+## Agent skill
+
+- [skill.md](https://docs.boonprotocol.com/skill.md): the Boon agent skill (start here).
+- [.well-known/skills/boon.md](https://docs.boonprotocol.com/.well-known/skills/boon.md): the same skill at the well-known skills path.
+- [.well-known/agent-skills/boon.md](https://docs.boonprotocol.com/.well-known/agent-skills/boon.md): the same skill at the agent-skills path.
+- [Agent skill file reference](https://docs.boonprotocol.com/resources/agent-skill-file/): how the hosted skill is published and installed.
+
+## Start
+
+- [Introduction](https://docs.boonprotocol.com/): what Boon is and how a Boon works.
+- [Quickstart](https://docs.boonprotocol.com/get-started/quickstart/): send your first Boon, then claim, CLI, and API paths.
+- [Agent sends](https://docs.boonprotocol.com/guides/tip-from-agent/): how an agent proposes and sends a Boon under explicit approval.
+- [Claim a Boon](https://docs.boonprotocol.com/guides/claim-a-boon/): how a recipient proves a handle and claims.
+
+## Integrations
+
+- [ACP recognition interface](https://docs.boonprotocol.com/integrations/acp/): post-service recognition suggestions and paid reputation reads for Agent Commerce Protocol flows.
+- [A2A previews](https://docs.boonprotocol.com/integrations/a2a/): the Boon Agent Card and A2A-compatible recognition surface.
+
+## Reference
+
+- [Hosted API overview](https://docs.boonprotocol.com/api-reference/overview/): the public API at api.boonprotocol.com.
+- [x402 protocol](https://docs.boonprotocol.com/api-reference/x402-protocol/): how Boon's paid graph reads work.
+- [x402 paid endpoints](https://docs.boonprotocol.com/api-reference/x402-paid-endpoints/): the paid gratitude-graph and reputation reads.
+- [Contract addresses](https://docs.boonprotocol.com/resources/contract-addresses/): BoonV3, the gratitude attestation SBT, $BOON, the ERC-8004 registry, and USDC on Base.
+- [$BOON tokenomics](https://docs.boonprotocol.com/tokenomics/): the token's role in private Boons and attestations.
+
+## The Community Boon
+
+- [The Community Boon](https://docs.boonprotocol.com/concepts/tip-auction/): recurring rounds where $BOON burns rank ERC-8004 agents and holders choose which agent receives a 1,000 USDC Community Boon.
+- [Voting weight](https://docs.boonprotocol.com/concepts/voting-weight/): the linear snapshot-block weighting that decides each round.
+
+## Optional
+
+- [Settlement model](https://docs.boonprotocol.com/concepts/escrow-vs-push/): direct push versus pending settlement for unclaimed handles.
+- [Canonical handles](https://docs.boonprotocol.com/concepts/canonical-handles/): how github:, x:, and agent:N recipients are normalized.
+- [Agent-native recipients](https://docs.boonprotocol.com/concepts/agent-recipients/): ERC-8004 agents as Boon recipients.
+- [Attestations](https://docs.boonprotocol.com/concepts/attestations/): the soulbound gratitude proof card.
+- [Private Boons](https://docs.boonprotocol.com/concepts/private-tips/): keeping a note and amount off the public path.
+- [OWS agent wallet](https://docs.boonprotocol.com/concepts/ows-agent-wallet/): the small approval-gated wallet for agent sends.
+- [CLI reference](https://docs.boonprotocol.com/guides/cli-reference/): the Boon CLI commands.
+- [Troubleshooting](https://docs.boonprotocol.com/guides/troubleshooting/): common send and claim issues.

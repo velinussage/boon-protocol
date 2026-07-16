@@ -1,0 +1,60 @@
+{
+  "name": "@velinussage/boon-cli",
+  "version": "0.6.0",
+  "type": "module",
+  "bin": {
+    "boon": "dist/index.js"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "pnpm run typecheck && tsc -p tsconfig.json && node ../app/node_modules/vite/bin/vite.js build --config vite.config.mjs",
+    "dev": "tsx src/index.ts",
+    "test": "pnpm --filter @boon/claim-types build && pnpm --filter @boon/normalize build && pnpm --filter @boon/x402-route build && pnpm build && node test/smoke.mjs && node test/claim-device.mjs && node test/ows-adapter.mjs && node test/ows-guardrails.test.mjs && node test/agent-tip.test.mjs && node test/private-tip.test.mjs && node test/tip-mint-attestation.test.mjs && node test/auction-tally.test.mjs && node test/request.test.mjs && node test/x402-prepare.test.mjs && node test/x402-route-note.test.mjs && node test/x402-publish-context.test.mjs && node test/x402-review.test.mjs && node test/x402-read.test.mjs && node test/npm-pack.test.mjs",
+    "start": "pnpm run build && node dist/index.js"
+  },
+  "dependencies": {
+    "@open-wallet-standard/core": "^1.3.2",
+    "@x402/core": "2.12.0",
+    "@x402/evm": "2.12.0",
+    "@x402/extensions": "2.12.0",
+    "commander": "^12.1.0",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@boon/claim-types": "workspace:*",
+    "@boon/normalize": "workspace:*",
+    "@boon/x402-route": "workspace:*",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "description": "Boon CLI for agent recognition, x402 review discovery, and Base USDC gratitude.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/index.js",
+    "dist/index.js.map",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/velinussage/boon-protocol.git"
+  },
+  "bugs": {
+    "url": "https://github.com/velinussage/boon-protocol/issues"
+  },
+  "homepage": "https://github.com/velinussage/boon-protocol#readme",
+  "license": "MIT",
+  "keywords": [
+    "boon",
+    "cli",
+    "usdc",
+    "base",
+    "agents"
+  ]
+}

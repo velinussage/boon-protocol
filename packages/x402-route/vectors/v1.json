@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "routes": [
+    {
+      "name": "host-case-and-query-omission",
+      "input": {
+        "publicEndpointUrl": "https://API.Example.COM/search?q=weather#ignored",
+        "method": "get"
+      },
+      "normalized": {
+        "origin": "https://api.example.com",
+        "method": "GET",
+        "publicPath": "/search"
+      },
+      "routeId": "0xe93032e57fafbea0f07da4a8cf9aff93d7c63835c1caba6f6d5958572ec34f73"
+    },
+    {
+      "name": "default-https-port",
+      "input": {
+        "publicEndpointUrl": "https://api.example.com:443/v1/data",
+        "method": "POST"
+      },
+      "normalized": {
+        "origin": "https://api.example.com",
+        "method": "POST",
+        "publicPath": "/v1/data"
+      },
+      "routeId": "0x35ca36eb3066899ffbe2cd47c08d312b6276ebc87a2027a8f06096c1199734e7"
+    },
+    {
+      "name": "non-default-port",
+      "input": {
+        "publicEndpointUrl": "https://api.example.com:8443/v1/data",
+        "method": "HEAD"
+      },
+      "normalized": {
+        "origin": "https://api.example.com:8443",
+        "method": "HEAD",
+        "publicPath": "/v1/data"
+      },
+      "routeId": "0x905b75064983edce771291be9f19b9f8ab7b08559641dbc9433a1c515a7eb845"
+    },
+    {
+      "name": "a-label-host",
+      "input": {
+        "publicEndpointUrl": "https://XN--BCHER-KVA.example/catalog",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://xn--bcher-kva.example",
+        "method": "GET",
+        "publicPath": "/catalog"
+      },
+      "routeId": "0xfdc49383b54d1bbf53a38cad3dc7bec76640b185553d84129aeadff1530c568a"
+    },
+    {
+      "name": "bracketed-ipv6",
+      "input": {
+        "publicEndpointUrl": "https://[2001:DB8:0:0::1]:443/v1/data",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://[2001:db8::1]",
+        "method": "GET",
+        "publicPath": "/v1/data"
+      },
+      "routeId": "0xc020b3011c5d3806ec8bdf05c73c9a1e2880d7acf33545215cafeb23c7464189"
+    },
+    {
+      "name": "canonical-ipv4",
+      "input": {
+        "publicEndpointUrl": "https://127.0.0.1:8443/v1/data",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://127.0.0.1:8443",
+        "method": "GET",
+        "publicPath": "/v1/data"
+      },
+      "routeId": "0xc5c92d3e9154a3c6496d2a5d905793a4fa8d81b15f3ebf98f1061a46b91b3ee1"
+    },
+    {
+      "name": "empty-path",
+      "input": {
+        "publicEndpointUrl": "https://empty.example",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://empty.example",
+        "method": "GET",
+        "publicPath": "/"
+      },
+      "routeId": "0xc37e834436e1b0f8aaf473dbd818451f062e2b64ed9f93f9017fa1faa887676e"
+    },
+    {
+      "name": "trailing-slash",
+      "input": {
+        "publicEndpointUrl": "https://empty.example/",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://empty.example",
+        "method": "GET",
+        "publicPath": "/"
+      },
+      "routeId": "0xc37e834436e1b0f8aaf473dbd818451f062e2b64ed9f93f9017fa1faa887676e"
+    },
+    {
+      "name": "multibyte-utf8-path",
+      "input": {
+        "publicEndpointUrl": "https://api.example.com/café/東京",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://api.example.com",
+        "method": "GET",
+        "publicPath": "/caf%C3%A9/%E6%9D%B1%E4%BA%AC"
+      },
+      "routeId": "0x40a38f8674d5625f367bb20ca9e67fbe3f59f23644923e0bba0ee7e7df542e8b"
+    },
+    {
+      "name": "percent-encoding-uppercase",
+      "input": {
+        "publicEndpointUrl": "https://api.example.com/a%2Fb",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://api.example.com",
+        "method": "GET",
+        "publicPath": "/a%2Fb"
+      },
+      "routeId": "0x33bddeacea02f181f704ca5c84dce365be5db27373725841b480911e942b74c1"
+    },
+    {
+      "name": "percent-encoding-lowercase",
+      "input": {
+        "publicEndpointUrl": "https://api.example.com/a%2fb",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://api.example.com",
+        "method": "GET",
+        "publicPath": "/a%2fb"
+      },
+      "routeId": "0xd3f3e78b95a3532ccf47be8ef69d09b5e5c6eaeedb953691e1dd14ad4b91a547"
+    },
+    {
+      "name": "dot-segments-request-serialized",
+      "input": {
+        "publicEndpointUrl": "https://api.example.com/a/../b",
+        "method": "GET"
+      },
+      "normalized": {
+        "origin": "https://api.example.com",
+        "method": "GET",
+        "publicPath": "/b"
+      },
+      "routeId": "0x72408b78e3d81787d883afddc515eb66085c62acff4185dade78aa8a5735a874"
+    }
+  ],
+  "actionKeys": [
+    {
+      "name": "basic-routed-boon-action",
+      "tipper": "0x1111111111111111111111111111111111111111",
+      "routeId": "0xe93032e57fafbea0f07da4a8cf9aff93d7c63835c1caba6f6d5958572ec34f73",
+      "contextRef": "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "actionKey": "0x79a72827b223740a9c6d77667cfed03d3125d45cd6a98e2d78adc8f919c919f4"
+    }
+  ],
+  "settlementContexts": [
+    {
+      "name": "base-observed-transaction",
+      "network": "eip155:8453",
+      "transactionHash": "0xabababababababababababababababababababababababababababababababab",
+      "contextRef": "0x82775f78b76c4e7fd112a5611dabfa15249137566cf977975e9dba676edb185f"
+    }
+  ],
+  "settlementSeries": [
+    {
+      "name": "base-usdc-primary-pay-to",
+      "routeId": "0xe93032e57fafbea0f07da4a8cf9aff93d7c63835c1caba6f6d5958572ec34f73",
+      "network": "eip155:8453",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x3333333333333333333333333333333333333333",
+      "settlementSeriesId": "0x33cded583365424cd8830e9f9202919c3292cdec31b451a3cbd9b6cd18edcd07"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+/logo
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400
+
+/logo.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400
+
+# Coinbase Smart Wallet popup requires `same-origin-allow-popups`, NOT `same-origin`.
+# Setting just `same-origin` silently breaks the keys.coinbase.com popup.
+# Research source: Base docs § "Popup Tips", May 2026.
+/*
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(self)

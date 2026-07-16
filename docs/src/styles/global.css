@@ -1,0 +1,58 @@
+:root {
+  --radius: 0.65rem;
+  --sidebar-width: 17rem;
+  --container-max-width: 1180px;
+  --sl-color-accent-low: #eef1e3;
+  --sl-color-accent: #6b7a45;
+  --sl-color-accent-high: #2f351f;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #252b19;
+  --sl-color-accent: #a9ba77;
+  --sl-color-accent-high: #e4ebca;
+}
+
+/* Brand wordmark: let the boon logo breathe in the header.
+   Starlight's default caps the logo to a thin nav strip; bump the nav and
+   the logo image itself so the seal-dot wordmark reads at proper scale. */
+:root {
+  --sl-nav-height: 5rem;
+}
+
+.site-title img,
+.site-title .logo {
+  height: 2.75rem;
+  max-height: 2.75rem;
+  width: auto;
+  max-width: none;
+}
+
+/* Center the entire header row vertically so logo, nav links, search,
+   and theme toggle all sit on the same axis — not bunched against the
+   top edge of the taller nav strip. */
+header > .container-wrapper,
+header > .container-wrapper > .container,
+header .header,
+header.header {
+  align-items: center;
+  min-height: var(--sl-nav-height);
+}
+
+.site-title-wrapper,
+.site-title,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 50rem) {
+  :root {
+    --sl-nav-height: 4rem;
+  }
+  .site-title img,
+  .site-title .logo {
+    height: 2.25rem;
+    max-height: 2.25rem;
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "note": "Shared Boon Link EIP-712 vector. provider remains in canonicalHandle and is also signed as providerHash = keccak256(utf8(provider prefix)).",
+  "linkType": "Link(bytes32 providerHash,bytes32 handleHash,address recipient,uint256 nonce,uint256 deadline)",
+  "typeHash": "0x325578221f87438412cac99fa04d501af19bc10b0bc72241f64857723270b08b",
+  "provider": "github",
+  "providerHash": "0x07a17bd3c7c8d7b88e93a4d9007e3bc230b0a586a434de0bed6500e9f343deb7",
+  "canonicalHandle": "github:alice",
+  "handleHash": "0xa291e52d56d16da51010eab06e19b98c446ace402248931e975eadf1fc8180c0",
+  "recipient": "0x91631864D1Bb69FFABcED9Ca9d1d71475Ab2faF8",
+  "nonce": 0,
+  "deadline": 9999999999,
+  "domain": {
+    "name": "Boon",
+    "version": "1",
+    "chainId": 8453,
+    "verifyingContract": "0xF3622742b1E446D92e45E22923Ef11C2fcD55D68"
+  },
+  "domainType": "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)",
+  "domainTypeHash": "0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f",
+  "domainSeparator": "0x4b719778092d7b09485263f747cf0ef720710966cb34e758c42a14f86cd51858",
+  "privateKey": "0x00000000000000000000000000000000000000000000000000000000000a11ce",
+  "expectedSigner": "0xe05fcC23807536bEe418f142D19fa0d21BB0cfF7",
+  "structHash": "0x60f27122dcc3aa7f94e3fbdbc06d99e03d4e60c84ffaa70517b650239280acd7",
+  "digest": "0xd40825daadc0ee0b7d8a802d1ecdc7c422837a66d8faf84b6bcb374f7c8be893",
+  "signature": "0x7f8423d58ed80ce5c8c0cbc694dc2a9d043e7aade55adec7531228375bd20c9e06d23250311b497135bb5a1e1129ea13adf966180ab987b3ecd9cf2083646d441b",
+  "recoveredSigner": "0xe05fcC23807536bEe418f142D19fa0d21BB0cfF7"
+}

@@ -1,0 +1,27 @@
+# Node
+node_modules/
+dist/
+package-lock.json
+
+# Foundry
+out/
+cache/
+broadcast/
+
+# Local env/state
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+*.pem
+*.key
+.boon/
+.clawpatch/
+
+# Generated skill artifacts built from skill/boon/SKILL.md.
+docs/public/skill.md
+docs/public/.well-known/
+
+# OS/editor
+.DS_Store
