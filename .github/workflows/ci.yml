@@ -16,6 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           submodules: recursive
 
       - name: Setup Foundry
@@ -32,6 +33,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Validate public release boundary and history
+        run: pnpm run public:validate
+
+      - name: Test public release validator
+        run: pnpm run public:validate:test
 
       - name: Contract tests
         run: forge test -vvv

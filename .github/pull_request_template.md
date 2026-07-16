@@ -4,6 +4,7 @@
 
 ## Validation
 
+- [ ] `pnpm run public:validate`
 - [ ] `forge test -vvv`
 - [ ] `pnpm --filter @boon/normalize test`
 - [ ] `pnpm --filter @velinussage/boon-cli test`

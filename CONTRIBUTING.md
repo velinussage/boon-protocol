@@ -17,6 +17,7 @@ Build artifacts such as `out/`, `cache/`, `broadcast/`, and `app/dist/` are giti
 Run the narrowest checks for your change, then the full set before merge:
 
 ```bash
+pnpm run public:validate
 forge test -vvv
 pnpm --filter @boon/normalize test
 pnpm --filter @velinussage/boon-cli test
@@ -25,6 +26,11 @@ pnpm --filter boon-app build
 pnpm run docs:check-skill
 pnpm run docs:build
 ```
+
+`pnpm install` activates the repository-local pre-commit and pre-push hooks.
+Repair them with `pnpm run hooks:install`. The hooks and CI scan both the public
+tree and every commit after the reviewed baseline, so a prohibited file cannot
+be hidden by deleting it in a later commit.
 
 Useful aggregate commands:
 
